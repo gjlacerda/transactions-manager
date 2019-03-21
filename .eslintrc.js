@@ -23,4 +23,11 @@ module.exports = {
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src']
+      }
+    }
+  },
 };
