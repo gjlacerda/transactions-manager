@@ -22,6 +22,7 @@ module.exports = {
     semi: [2, 'never'],
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
+    "import/prefer-default-export": 0,
   },
   settings: {
     'import/resolver': {
