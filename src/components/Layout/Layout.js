@@ -2,7 +2,7 @@ import React from 'react'
 import { Normalize } from 'styled-normalize'
 import { createGlobalStyle } from 'styled-components'
 import { fontSize, fontWeight } from 'utils/font'
-import { colorBlack } from 'utils/color'
+import { colorBlack, colorGrayLight } from 'utils/color'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${fontWeight.regular};
     font-size: ${fontSize.normal};
     color: ${colorBlack};
+    background-color: ${colorGrayLight};
   }
 
   * {

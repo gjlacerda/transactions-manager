@@ -1,5 +1,5 @@
 export const fontSize = {
-  small: '12px',
+  small: '14px',
   normal: '16px',
   large: '20px',
 }

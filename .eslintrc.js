@@ -1,4 +1,5 @@
 module.exports = {
+  parser: "babel-eslint",
   env: {
     browser: true,
     es6: true,
@@ -23,6 +24,8 @@ module.exports = {
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
     "import/prefer-default-export": 0,
+    "no-confusing-arrow": 0,
+    "no-return-assign": 0,
   },
   settings: {
     'import/resolver': {

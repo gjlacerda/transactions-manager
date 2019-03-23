@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import A from 'components/_common/A'
 import { colorApp, colorWhite } from 'utils/color'
 import { fontSize, fontWeight } from 'utils/font'
 import { marginSize } from 'utils/margin'
+import { transitionInput } from 'utils/transition'
 
 const Container = styled.div`
   display: flex;
@@ -26,11 +27,13 @@ const Nav = styled.nav`
   width: 50%;
 `
 
-const NavItem = styled(A)`
+const NavItem = styled(Link)`
   opacity: ${props => (props.active ? '1' : '0.8')};
-  transition: opacity 0.1s ease-in-out;
+  transition: ${transitionInput('opacity')};
   padding: 15px 0;
+  color: ${colorWhite};
   margin: 0 ${marginSize.medium};
+  text-decoration: none;
   border-bottom: 3px solid ${props => (props.active ? colorWhite : 'transparent')};
 
   &:hover {
@@ -38,15 +41,18 @@ const NavItem = styled(A)`
   }
 `
 
+// tODO: testar
+export const getActiveByPathname = pathname => (window.location.pathname === pathname ? 'true' : '')
+
 export default () => (
   <Container>
     <Logo>TM.</Logo>
     <Nav>
-      <NavItem light active href="#">
+      <NavItem active={getActiveByPathname('/')} to="/">
         transações
       </NavItem>
-      <NavItem light href="#">
-        cadastrar
+      <NavItem active={getActiveByPathname('/transaction')} to="/transaction">
+        nova transação
       </NavItem>
     </Nav>
     <div />
