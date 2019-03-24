@@ -76,14 +76,19 @@ class TextField extends Component {
 
   render() {
     const {
-      label, fullWidth, width, onChange,
+      label,
+      fullWidth,
+      width,
+      type,
+      onChange,
     } = this.props
     const { className } = this.state
 
     return (
       <Container className={className}>
         <InputText
-          type="text"
+          type={type || 'text'}
+          step="0.01"
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           fullWidth={fullWidth}

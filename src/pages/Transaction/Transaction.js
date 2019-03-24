@@ -75,6 +75,7 @@ class Transaction extends Component {
               <TextField
                 label="Preço"
                 width="100px"
+                type="number"
                 onChange={event => this.updateState('value', event.target.value)}
               />
             </Box>
