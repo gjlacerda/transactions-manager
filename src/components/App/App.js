@@ -1,9 +1,12 @@
 import React from 'react'
+import Provider from 'components/Provider'
 import Layout from 'components/Layout'
 import Routes from 'components/Routes'
 
 export default () => (
-  <Layout>
-    <Routes />
-  </Layout>
+  <Provider>
+    <Layout>
+      <Routes />
+    </Layout>
+  </Provider>
 )

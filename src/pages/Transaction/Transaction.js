@@ -29,45 +29,79 @@ const Options = styled.div`
 
 class Transaction extends Component {
   state = {
-    type: 'debit',
+    description: '',
+    value: '',
+    kind: 'debit',
   }
 
-  changeType(type) {
-    this.setState({ type })
+  onSubmit = () => {
+    const { addTransaction, history } = this.props
+    const { description, value, kind } = this.state
+    if (!description || !value) {
+      return
+    }
+    addTransaction({ description, value, kind })
+    history.push('/')
+  }
+
+  updateState(state, value) {
+    this.setState({
+      [state]: value,
+    })
+  }
+
+  changeType(kind) {
+    this.setState({ kind })
   }
 
   render() {
     const { history } = this.props
-    const { type } = this.state
+    const { kind } = this.state
 
     return (
       <DashboardLayout>
         <Card>
-          <H1>Nova transação</H1>
-          <Box marginBottom="medium">
-            <TextField label="Descrição" width="300px" />
-          </Box>
-          <Box marginBottom="large">
-            <TextField label="Preço" width="100px" />
-          </Box>
-          <Options>
-            <Radiobutton
-              label="débito"
-              active={type === 'debit'}
-              debit
-              onClick={() => this.changeType('debit')}
-            />
-            <Radiobutton
-              label="crédito"
-              active={type === 'credit'}
-              credit
-              onClick={() => this.changeType('credit')}
-            />
-          </Options>
-          <Actions>
-            <Button onClick={() => history.push('/')}>Cancelar</Button>
-            <Button primary>Salvar</Button>
-          </Actions>
+          <form onSubmit={this.onSubmit}>
+            <H1>Nova transação</H1>
+            <Box marginBottom="medium">
+              <TextField
+                label="Descrição"
+                width="300px"
+                focus
+                onChange={event => this.updateState('description', event.target.value)}
+              />
+            </Box>
+            <Box marginBottom="large">
+              <TextField
+                label="Preço"
+                width="100px"
+                onChange={event => this.updateState('value', event.target.value)}
+              />
+            </Box>
+            <Options>
+              <Radiobutton
+                label="débito"
+                active={kind === 'debit'}
+                debit
+                onClick={() => this.changeType('debit')}
+                onChange={event => this.updateState('value', event.target.value)}
+              />
+              <Radiobutton
+                label="crédito"
+                active={kind === 'credit'}
+                credit
+                onClick={() => this.changeType('credit')}
+              />
+            </Options>
+            <Actions>
+              <Button type="button" onClick={() => history.push('/')}>
+                Cancelar
+              </Button>
+              <Button type="submit" primary>
+                Salvar
+              </Button>
+            </Actions>
+          </form>
         </Card>
       </DashboardLayout>
     )

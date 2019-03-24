@@ -75,7 +75,9 @@ class TextField extends Component {
   }
 
   render() {
-    const { label, fullWidth, width } = this.props
+    const {
+      label, fullWidth, width, onChange,
+    } = this.props
     const { className } = this.state
 
     return (
@@ -87,6 +89,7 @@ class TextField extends Component {
           fullWidth={fullWidth}
           width={width}
           ref={input => this.input = input}
+          onChange={onChange}
         />
         <Label>
           {label}

@@ -12,6 +12,7 @@ import {
 import { borderRadius } from 'utils/border'
 import { inputShadow } from 'utils/shadow'
 import { transitionInput } from 'utils/transition'
+import { opacityDisabled } from 'utils/opacity'
 
 const Container = styled.button`
   padding: 10px 20px;
@@ -23,6 +24,7 @@ const Container = styled.button`
   cursor: pointer;
   box-shadow: ${inputShadow};
   transition: ${transitionInput('background-color')};
+  opacity: ${props => props.disabled ? opacityDisabled : 1};
 
   &:hover {
     background-color: ${props => (props.primary ? colorAppDark : colorGrayDark)};
@@ -33,8 +35,19 @@ const Container = styled.button`
   }
 `
 
-export default ({ primary, onClick, children }) => (
-  <Container primary={primary} onClick={onClick}>
+export default ({
+  primary,
+  onClick,
+  type,
+  disabled,
+  children,
+}) => (
+  <Container
+    type={type}
+    primary={primary}
+    disabled={disabled}
+    onClick={onClick}
+  >
     {children}
   </Container>
 )

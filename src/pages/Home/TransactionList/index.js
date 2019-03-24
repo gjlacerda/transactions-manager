@@ -1,3 +1,3 @@
-import TransactionList from './TransactionList'
+import TransactionListContainer from './TransactionListContainer'
 
-export default TransactionList
+export default TransactionListContainer
