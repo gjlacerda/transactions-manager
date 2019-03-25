@@ -21,6 +21,7 @@ const addTransaction = (state, action) => ({
 const requestTransactions = state => ({
   ...state,
   loading: true,
+  dirty: true,
 })
 
 const receiveTransactions = (state, action) => ({

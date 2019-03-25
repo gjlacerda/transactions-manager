@@ -57,8 +57,8 @@ const Actions = styled.div`
 
 class TransactionList extends Component {
   componentDidMount() {
-    const { list, requestTransactions } = this.props
-    if (!list.length) {
+    const { dirty, requestTransactions } = this.props
+    if (!dirty) {
       requestTransactions()
     }
   }
