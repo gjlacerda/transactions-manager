@@ -22,8 +22,8 @@ const requestTransactions = lastId => async (dispatch, getState) => {
   const value = result.val() || []
   const list = Object
     .keys(value)
-    .map((todo, index) => ({
-      ...value[todo],
+    .map((item, index) => ({
+      ...value[item],
       id: Object.keys(value)[index],
     }))
     .reverse()
