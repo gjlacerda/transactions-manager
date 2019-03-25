@@ -43,7 +43,12 @@ class Transaction extends Component {
       return
     }
 
-    addTransaction({ description, value, kind })
+    addTransaction({
+      id: +new Date(), // TODO: pegar do firebase
+      description,
+      value,
+      kind,
+    })
 
     history.push('/')
   }

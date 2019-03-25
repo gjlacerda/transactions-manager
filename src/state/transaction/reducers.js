@@ -9,10 +9,10 @@ const addTransaction = (state, action) => ({
   ...state,
   list: [
     {
+      id: action.id,
       description: action.description,
       value: action.value,
       kind: action.kind,
-      id: +new Date(), // TODO: trazer do último insert
     },
     ...state.list,
   ],

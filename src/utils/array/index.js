@@ -1,4 +1,8 @@
-const removeDuplicates = (listFrom, list, indexProp) => list.reduce((unique, o) => {
+const removeDuplicates = (
+  listFrom = [],
+  listTarget = [],
+  indexProp,
+) => listTarget.reduce((unique, o) => {
   if (!listFrom.some(obj => obj[indexProp] === o[indexProp])) {
     unique.push(o)
   }
