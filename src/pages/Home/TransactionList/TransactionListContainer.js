@@ -10,8 +10,9 @@ const mapStateToProps = state => ({
   dirty: state.transaction.dirty,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   requestTransactions: lastId => dispatch(operations.requestTransactions(lastId)),
+  history: ownProps.history,
 })
 
 export default connect(

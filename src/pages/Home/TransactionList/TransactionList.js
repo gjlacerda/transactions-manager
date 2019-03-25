@@ -73,16 +73,16 @@ class TransactionList extends Component {
     )
   }
 
-  // mudar para funcao pura
   render() {
+    const { history } = this.props
     return (
       <React.Fragment>
         <Header>
           <H1 className="header">
             Transações
           </H1>
-          <Button>
-            +
+          <Button onClick={() => history.push('/transaction')}>
+            Novo
           </Button>
         </Header>
         <Table>
