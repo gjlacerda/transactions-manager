@@ -34,13 +34,17 @@ class Transaction extends Component {
     kind: 'debit',
   }
 
-  onSubmit = () => {
+  onSubmit = (event) => {
+    event.preventDefault()
+
     const { addTransaction, history } = this.props
     const { description, value, kind } = this.state
     if (!description || !value) {
       return
     }
+
     addTransaction({ description, value, kind })
+
     history.push('/')
   }
 
