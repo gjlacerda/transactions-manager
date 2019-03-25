@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import TransactionItem from 'pages/Home/TransactionItem'
 import H1 from 'components/_common/H1'
 import Button from 'components/_common/Button'
 import { fontSize } from 'utils/font'
 import { marginSize } from 'utils/margin'
-import {
-  colorAppUltraLight,
-  colorGrayLight,
-  colorCredit,
-  colorDebit,
-} from 'utils/color'
-import { transitionInput } from 'utils/transition'
+import { colorGrayLight } from 'utils/color'
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: ${marginSize.large};
+
+  .header {
+    margin-right: ${marginSize.medium};
+    margin-bottom: 0;
+  }
+`
 
 const Table = styled.table`
   width: 100%;
@@ -21,33 +27,6 @@ const Table = styled.table`
   tr:not(:last-child) {
     border-bottom: 1px solid ${colorGrayLight};
   }
-`
-
-const Tr = styled.tr`
-  cursor: pointer;
-  transition: ${transitionInput('background-color')};
-
-  &:hover {
-    background-color: ${colorAppUltraLight};
-  }
-`
-
-const Td = styled.td`
-  padding: ${marginSize.medium} ${marginSize.small};
-`
-
-const TdName = styled(Td)`
-  width: 60%;
-`
-
-const TdValue = styled(Td)`
-  width: 20%;
-`
-
-const TdType = styled(Td)`
-  width: 20%;
-  text-align: right;
-  color: ${props => props.kind === 'credit' ? colorCredit : colorDebit};
 `
 
 const Actions = styled.div`
@@ -66,11 +45,12 @@ class TransactionList extends Component {
   renderTransactions() {
     const { list } = this.props
     return list.map(transaction => (
-      <Tr key={transaction.id}>
-        <TdName>{transaction.description}</TdName>
-        <TdValue>{transaction.value}</TdValue>
-        <TdType kind={transaction.kind}>{transaction.kind}</TdType>
-      </Tr>
+      <TransactionItem
+        key={transaction.id}
+        description={transaction.description}
+        value={transaction.value}
+        kind={transaction.kind}
+      />
     ))
   }
 
@@ -97,7 +77,14 @@ class TransactionList extends Component {
   render() {
     return (
       <React.Fragment>
-        <H1>Transações</H1>
+        <Header>
+          <H1 className="header">
+            Transações
+          </H1>
+          <Button>
+            +
+          </Button>
+        </Header>
         <Table>
           <tbody>
             {this.renderTransactions()}
