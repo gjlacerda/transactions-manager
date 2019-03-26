@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radiobutton component deve ser igual ao snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c0:hover label {
+  opacity: 1;
+}
+
+.c0.active .fakeinput {
+  border-color: #56caa4;
+}
+
+.c0.active .dot {
+  background-color: #56caa4;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 50%;
+}
+
+.c3 {
+  font-size: 14px;
+  margin-left: 8px;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.c2 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+<div
+  className="active c0"
+>
+  <div
+    className="fakeinput c1"
+  >
+    <div
+      className="dot c2"
+    />
+  </div>
+  <label
+    className="c3"
+  >
+    Teste
+  </label>
+</div>
+`;

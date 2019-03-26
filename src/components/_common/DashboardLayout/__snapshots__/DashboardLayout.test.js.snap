@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardLayout component deve ser igual ao snapshot 1`] = `
+Array [
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #1976d2;
+  height: 50px;
+}
+
+.c1 {
+  color: #ffffff;
+  width: 25%;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.c3 {
+  opacity: 1;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+  padding: 15px 0;
+  color: #ffffff;
+  margin: 0 20px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-bottom: 3px solid #ffffff;
+}
+
+.c3:hover {
+  opacity: 1;
+}
+
+.c4 {
+  opacity: 0.8;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+  padding: 15px 0;
+  color: #ffffff;
+  margin: 0 20px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.c4:hover {
+  opacity: 1;
+}
+
+<div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      TM.
+    </div>
+    <nav
+      className="c2"
+    >
+      <a
+        active="true"
+        className="c3"
+        href="/"
+        onClick={[Function]}
+      >
+        transações
+      </a>
+      <a
+        active=""
+        className="c4"
+        href="/transaction"
+        onClick={[Function]}
+      >
+        nova transação
+      </a>
+    </nav>
+    <div />
+  </div>,
+  .c0 {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+<div
+    className="c0"
+  >
+    <span>
+      teste
+    </span>
+  </div>,
+]
+`;
