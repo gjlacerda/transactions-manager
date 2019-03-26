@@ -4,6 +4,7 @@ import Balance from './Balance'
 
 const mapStateToProps = state => ({
   balance: state.balance.balance,
+  loading: state.balance.loading,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -12,6 +12,7 @@ const requestBalance = state => ({
 
 const receiveBalance = (state, action) => ({
   ...state,
+  loading: false,
   balance: action.balance,
 })
 

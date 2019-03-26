@@ -7,6 +7,7 @@ import Balance from './Balance'
 export default ({ history }) => (
   <DashboardLayout>
     <Card>
+
       <Balance />
     </Card>
     <Card>

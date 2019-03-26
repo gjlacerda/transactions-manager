@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TransactionItem from 'pages/Home/TransactionItem'
 import H1 from 'components/_common/H1'
 import Button from 'components/_common/Button'
+import Skeleton from 'components/_common/Skeleton'
 import { fontSize } from 'utils/font'
 import { marginSize } from 'utils/margin'
 import { colorGrayLight } from 'utils/color'
@@ -34,6 +35,11 @@ const Actions = styled.div`
   margin-top: ${marginSize.large};
 `
 
+const SkeletonWrapper = styled.div`
+  margin-top: 15px;
+  margin-bottom: 20px;
+`
+
 class TransactionList extends Component {
   componentDidMount() {
     const { dirty, requestTransactions } = this.props
@@ -52,6 +58,25 @@ class TransactionList extends Component {
         kind={transaction.kind}
       />
     ))
+  }
+
+  renderSkeleton() {
+    const { loading, dirty } = this.props
+    return (
+      (loading && !dirty) && (
+        <React.Fragment>
+          <SkeletonWrapper>
+            <Skeleton height="25px" />
+          </SkeletonWrapper>
+          <SkeletonWrapper>
+            <Skeleton height="25px" />
+          </SkeletonWrapper>
+          <SkeletonWrapper>
+            <Skeleton height="25px" />
+          </SkeletonWrapper>
+        </React.Fragment>
+      )
+    )
   }
 
   renderButtonMore() {
@@ -87,6 +112,7 @@ class TransactionList extends Component {
         </Header>
         <Table>
           <tbody>
+            {this.renderSkeleton()}
             {this.renderTransactions()}
           </tbody>
         </Table>

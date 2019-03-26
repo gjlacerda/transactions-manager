@@ -21,12 +21,12 @@ const addTransaction = (state, action) => ({
 const requestTransactions = state => ({
   ...state,
   loading: true,
-  dirty: true,
 })
 
 const receiveTransactions = (state, action) => ({
   ...state,
   loading: false,
+  dirty: true,
   lastId: action.payload.length ? action.payload[action.payload.length - 1].id : null,
   lastPage: action.payload.length < 4, // TODO parametrizar
   list: [

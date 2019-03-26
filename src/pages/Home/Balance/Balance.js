@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Skeleton from 'components/_common/Skeleton'
 import { fontSize } from 'utils/font'
 import { colorDebit, colorCredit } from 'utils/color'
 
@@ -23,10 +24,11 @@ class Balance extends Component {
   }
 
   render() {
-    const { balance } = this.props
+    const { balance, loading } = this.props
     return (
       <Container balance={balance}>
-        {getBalanceText(balance)}
+        {loading && <Skeleton width="60px" height="34px" />}
+        {!loading && getBalanceText(balance)}
       </Container>
     )
   }
