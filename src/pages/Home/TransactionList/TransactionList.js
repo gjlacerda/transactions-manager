@@ -110,9 +110,9 @@ class TransactionList extends Component {
             Novo
           </Button>
         </Header>
+        {this.renderSkeleton()}
         <Table>
           <tbody>
-            {this.renderSkeleton()}
             {this.renderTransactions()}
           </tbody>
         </Table>
