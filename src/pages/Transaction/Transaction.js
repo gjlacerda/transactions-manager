@@ -85,6 +85,7 @@ class Transaction extends Component {
                 label="Preço"
                 width="100px"
                 type="number"
+                pattern="[0-9]*"
                 onChange={event => this.updateState('value', event.target.value)}
               />
             </Box>

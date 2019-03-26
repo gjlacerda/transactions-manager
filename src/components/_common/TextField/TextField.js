@@ -80,6 +80,7 @@ class TextField extends Component {
       fullWidth,
       width,
       type,
+      pattern,
       onChange,
     } = this.props
     const { className } = this.state
@@ -93,6 +94,7 @@ class TextField extends Component {
           onBlur={this.handleBlur}
           fullWidth={fullWidth}
           width={width}
+          pattern={pattern}
           ref={input => this.input = input}
           onChange={onChange}
         />
