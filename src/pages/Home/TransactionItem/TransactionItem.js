@@ -7,13 +7,16 @@ import {
 } from 'utils/color'
 import { transitionInput } from 'utils/transition'
 import { marginSize } from 'utils/margin'
+import { sm } from 'utils/breakpoint'
 
 const Tr = styled.tr`
   cursor: pointer;
   transition: ${transitionInput('background-color')};
 
-  &:hover {
-    background-color: ${colorAppUltraLight};
+  @media (min-width: ${sm}) {
+    &:hover {
+      background-color: ${colorAppUltraLight};
+    }
   }
 `
 

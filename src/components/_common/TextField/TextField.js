@@ -45,7 +45,7 @@ const InputText = styled.input`
   border-radius: 0;
   border-bottom: 1px solid ${colorBlack};
   outline: none;
-  padding-bottom: 6px;
+  padding: 0 0 6px 0;
   width: ${props => props.fullWidth ? '100%' : (props.width || 'auto')};
 `
 
