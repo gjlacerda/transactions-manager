@@ -38,6 +38,7 @@ describe('balance state', () => {
       const result = reducer(initialState, receiveBalance(10))
       const expected = {
         balance: 10,
+        loading: false,
       }
       expect(result).toEqual(expected)
     })

@@ -42,7 +42,7 @@ describe('transaction state', () => {
   })
 
   describe('requestTransactions', () => {
-    it('deve mudar a flag <loading> e <dirty> para true', () => {
+    it('deve mudar a flag <loading> e para true', () => {
       const initialState = {
         list: [1, 2, 3],
       }
@@ -50,7 +50,6 @@ describe('transaction state', () => {
       const expected = {
         list: [1, 2, 3],
         loading: true,
-        dirty: true,
       }
       expect(result).toEqual(expected)
     })
@@ -66,6 +65,7 @@ describe('transaction state', () => {
         loading: false,
         lastId: null,
         lastPage: true,
+        dirty: true,
         list: [1, 2, 3],
       }
       expect(result).toEqual(expected)
@@ -77,6 +77,7 @@ describe('transaction state', () => {
       }
       const result = reducer(initialState, receiveTransactions([4, 5, { id: 6 }]))
       const expected = {
+        dirty: true,
         loading: false,
         lastId: 6,
         lastPage: true,
@@ -91,6 +92,7 @@ describe('transaction state', () => {
       }
       const result = reducer(initialState, receiveTransactions([4, 5, 6, 7, { id: 8 }]))
       const expected = {
+        dirty: true,
         loading: false,
         lastId: 8,
         lastPage: false,
