@@ -9,5 +9,5 @@ export default styled.div`
   border-radius: ${borderRadius};
   padding: 30px;
   box-shadow: ${boxShadow};
-  margin-bottom: ${marginSize.medium};
+  margin: 0 ${marginSize.small} ${marginSize.medium} ${marginSize.small};
 `

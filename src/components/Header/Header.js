@@ -5,6 +5,7 @@ import { colorApp, colorWhite } from 'utils/color'
 import { fontSize, fontWeight } from 'utils/font'
 import { marginSize } from 'utils/margin'
 import { transitionInput } from 'utils/transition'
+import { sm } from 'utils/breakpoint'
 
 const Container = styled.div`
   display: flex;
@@ -22,9 +23,13 @@ const Logo = styled.div`
 `
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   justify-content: center;
   width: 50%;
+
+  @media (min-width: ${sm}) {
+    display: flex;
+  }
 `
 
 const NavItem = styled(Link)`
