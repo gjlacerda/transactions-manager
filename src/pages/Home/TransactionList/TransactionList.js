@@ -6,7 +6,6 @@ import Button from 'components/_common/Button'
 import { fontSize } from 'utils/font'
 import { marginSize } from 'utils/margin'
 import { colorGrayLight } from 'utils/color'
-import { decorateTransactionList } from 'utils/array/array'
 import TransactionListSkeleton from './TransactionListSkeleton'
 
 const Header = styled.div`
@@ -52,10 +51,8 @@ class TransactionList extends Component {
       loading,
       requestTransactions,
       history,
-      balance,
       dirty,
     } = this.props
-    const decoratedList = decorateTransactionList(list, balance)
 
     return (
       <Fragment>
@@ -72,7 +69,7 @@ class TransactionList extends Component {
         )}
         <Table>
           <tbody>
-            {decoratedList.map(transaction => (
+            {list.map(transaction => (
               <TransactionItem
                 key={transaction.id}
                 description={transaction.description}

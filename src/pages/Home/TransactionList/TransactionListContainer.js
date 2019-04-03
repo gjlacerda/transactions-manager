@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
-import { operations } from 'state/transaction'
+import { operations, selectors } from 'state/transaction'
 import TransactionList from './TransactionList'
 
 const mapStateToProps = state => ({
-  list: state.transaction.list,
+  list: selectors.mapAccumulatedValue(
+    state.transaction.list,
+    state.balance.balance,
+  ),
   lastId: state.transaction.lastId,
   lastPage: state.transaction.lastPage,
   loading: state.transaction.loading,
   dirty: state.transaction.dirty,
-  balance: state.balance.balance,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
