@@ -18,7 +18,7 @@ describe('transaction state', () => {
   })
 
   describe('addTransaction', () => {
-    it('deve adicionar a nova transação no começo da lista', () => {
+    it('deve adicionar a nova transação no fim da lista', () => {
       const initialState = {
         list: [1, 2, 3],
       }
@@ -30,12 +30,12 @@ describe('transaction state', () => {
         value: 'value',
       }))
       const expected = {
-        list: [{
+        list: [1, 2, 3, {
           id,
           description: 'description',
           kind: 'kind',
           value: 'value',
-        }, 1, 2, 3],
+        }],
       }
       expect(result).toEqual(expected)
     })
@@ -75,13 +75,13 @@ describe('transaction state', () => {
       const initialState = {
         list: [1, 2, 3],
       }
-      const result = reducer(initialState, receiveTransactions([4, 5, { id: 6 }]))
+      const result = reducer(initialState, receiveTransactions([{ id: 4 }, 5, 6]))
       const expected = {
         dirty: true,
         loading: false,
-        lastId: 6,
+        lastId: 4,
         lastPage: true,
-        list: [1, 2, 3, 4, 5, { id: 6 }],
+        list: [{ id: 4 }, 5, 6, 1, 2, 3],
       }
       expect(result).toEqual(expected)
     })
@@ -90,13 +90,13 @@ describe('transaction state', () => {
       const initialState = {
         list: [1, 2, 3],
       }
-      const result = reducer(initialState, receiveTransactions([4, 5, 6, 7, { id: 8 }]))
+      const result = reducer(initialState, receiveTransactions([{ id: 4 }, 5, 6, 7, 8]))
       const expected = {
         dirty: true,
         loading: false,
-        lastId: 8,
+        lastId: 4,
         lastPage: false,
-        list: [1, 2, 3, 4, 5, 6, 7, { id: 8 }],
+        list: [{ id: 4 }, 5, 6, 7, 8, 1, 2, 3],
       }
       expect(result).toEqual(expected)
     })

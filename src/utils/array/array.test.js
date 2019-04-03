@@ -1,4 +1,4 @@
-import { removeDuplicates } from './index'
+import { removeDuplicates } from './array'
 
 describe('array', () => {
   describe('removeDuplicates', () => {

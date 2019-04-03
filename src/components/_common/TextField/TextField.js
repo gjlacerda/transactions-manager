@@ -59,10 +59,13 @@ class TextField extends Component {
     }
   }
 
-  handleFocus = () => {
+  handleFocus = focus => () => {
     this.setState({
       className: 'selected',
     })
+    if (focus) {
+      focus()
+    }
   }
 
   handleBlur = (event) => {
@@ -81,7 +84,11 @@ class TextField extends Component {
       width,
       type,
       pattern,
+      maxLength,
+      id,
+      inputmode,
       onChange,
+      onFocus,
     } = this.props
     const { className } = this.state
 
@@ -90,11 +97,14 @@ class TextField extends Component {
         <InputText
           type={type || 'text'}
           step="0.01"
-          onFocus={this.handleFocus}
+          onFocus={this.handleFocus(onFocus)}
           onBlur={this.handleBlur}
           fullWidth={fullWidth}
           width={width}
           pattern={pattern}
+          maxLength={maxLength}
+          id={id}
+          inputmode={inputmode || 'none'}
           ref={input => this.input = input}
           onChange={onChange}
         />

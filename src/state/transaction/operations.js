@@ -1,5 +1,5 @@
 import database from 'database'
-import { removeDuplicates } from 'utils/array'
+import { removeDuplicates } from 'utils/array/array'
 import * as actions from './actions'
 
 const ref = database.ref('transactions')
@@ -14,7 +14,7 @@ const requestTransactions = lastId => async (dispatch, getState) => {
 
   let query = ref
     .orderByKey()
-    .limitToLast(5) // TODO parametrizar
+    .limitToLast(5)
   if (lastId) {
     query = query.endAt(lastId)
   }
@@ -26,7 +26,6 @@ const requestTransactions = lastId => async (dispatch, getState) => {
       ...value[item],
       id: Object.keys(value)[index],
     }))
-    .reverse()
 
   const filteredList = removeDuplicates(getState().transaction.list, list, 'id')
   dispatch(actions.receiveTransactions(filteredList))

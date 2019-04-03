@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import SimpleMaskMoney from 'simple-mask-money'
 import DashboardLayout from 'components/_common/DashboardLayout'
 import Card from 'components/_common/Card'
 import H1 from 'components/_common/H1'
@@ -8,6 +9,7 @@ import Radiobutton from 'components/_common/Radiobutton'
 import Button from 'components/_common/Button'
 import Box from 'components/_common/Box'
 import { marginSize } from 'utils/margin'
+import { formatToMachine } from 'utils/currency'
 
 const Actions = styled.div`
   display: flex;
@@ -34,6 +36,19 @@ class Transaction extends Component {
     kind: 'debit',
   }
 
+  onValueFocus = () => {
+    SimpleMaskMoney.setMask('#value', {
+      allowNegative: false,
+      negativeSignAfter: false,
+      fixed: true,
+      fractionDigits: 2,
+      decimalSeparator: ',',
+      thousandsSeparator: '.',
+      cursor: 'end',
+      afterFormat: value => this.updateState('value', value),
+    })
+  }
+
   onSubmit = (event) => {
     event.preventDefault()
 
@@ -46,7 +61,7 @@ class Transaction extends Component {
     addTransaction({
       id: +new Date(), // TODO: pegar do firebase
       description,
-      value,
+      value: formatToMachine(value),
       kind,
     })
 
@@ -77,6 +92,7 @@ class Transaction extends Component {
                 label="Descrição"
                 width="300px"
                 focus
+                maxLength="30"
                 onChange={event => this.updateState('description', event.target.value)}
               />
             </Box>
@@ -84,9 +100,10 @@ class Transaction extends Component {
               <TextField
                 label="Preço"
                 width="100px"
-                type="number"
-                pattern="[0-9]*"
+                id="value"
+                maxLength="11"
                 onChange={event => this.updateState('value', event.target.value)}
+                onFocus={this.onValueFocus}
               />
             </Box>
             <Options>

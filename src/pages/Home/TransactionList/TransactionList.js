@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import TransactionItem from 'pages/Home/TransactionItem'
 import H1 from 'components/_common/H1'
 import Button from 'components/_common/Button'
-import Skeleton from 'components/_common/Skeleton'
 import { fontSize } from 'utils/font'
 import { marginSize } from 'utils/margin'
 import { colorGrayLight } from 'utils/color'
+import { decorateTransactionList } from 'utils/array/array'
+import TransactionListSkeleton from './TransactionListSkeleton'
 
 const Header = styled.div`
   display: flex;
@@ -35,11 +36,6 @@ const Actions = styled.div`
   margin-top: ${marginSize.large};
 `
 
-const SkeletonWrapper = styled.div`
-  margin-top: 15px;
-  margin-bottom: 20px;
-`
-
 class TransactionList extends Component {
   componentDidMount() {
     const { dirty, requestTransactions } = this.props
@@ -48,60 +44,21 @@ class TransactionList extends Component {
     }
   }
 
-  renderTransactions() {
-    const { list } = this.props
-    return list.map(transaction => (
-      <TransactionItem
-        key={transaction.id}
-        description={transaction.description}
-        value={transaction.value}
-        kind={transaction.kind}
-      />
-    ))
-  }
-
-  renderSkeleton() {
-    const { loading, dirty } = this.props
-    return (
-      (loading && !dirty) && (
-        <React.Fragment>
-          <SkeletonWrapper>
-            <Skeleton height="25px" />
-          </SkeletonWrapper>
-          <SkeletonWrapper>
-            <Skeleton height="25px" />
-          </SkeletonWrapper>
-          <SkeletonWrapper>
-            <Skeleton height="25px" />
-          </SkeletonWrapper>
-        </React.Fragment>
-      )
-    )
-  }
-
-  renderButtonMore() {
+  render() {
     const {
       list,
       lastId,
       lastPage,
       loading,
       requestTransactions,
+      history,
+      balance,
+      dirty,
     } = this.props
-    return (list.length > 0 && !lastPage) && (
-      <Button
-        primary
-        onClick={() => requestTransactions(lastId)}
-        disabled={loading}
-      >
-        Carregar mais
-      </Button>
-    )
-  }
+    const decoratedList = decorateTransactionList(list, balance)
 
-  render() {
-    const { history } = this.props
     return (
-      <React.Fragment>
+      <Fragment>
         <Header>
           <H1 className="header">
             Transações
@@ -110,16 +67,34 @@ class TransactionList extends Component {
             Novo
           </Button>
         </Header>
-        {this.renderSkeleton()}
+        {loading && !dirty && (
+          <TransactionListSkeleton />
+        )}
         <Table>
           <tbody>
-            {this.renderTransactions()}
+            {decoratedList.map(transaction => (
+              <TransactionItem
+                key={transaction.id}
+                description={transaction.description}
+                value={transaction.value}
+                kind={transaction.kind}
+                accumulated={transaction.accumulated}
+              />
+            ))}
           </tbody>
         </Table>
         <Actions>
-          {this.renderButtonMore()}
+          {list.length > 0 && !lastPage && (
+            <Button
+              primary
+              onClick={() => requestTransactions(lastId)}
+              disabled={loading}
+            >
+              Carregar mais
+            </Button>
+          )}
         </Actions>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

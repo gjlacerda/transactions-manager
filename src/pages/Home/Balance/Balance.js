@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import Skeleton from 'components/_common/Skeleton'
 import { fontSize } from 'utils/font'
 import { colorDebit, colorCredit } from 'utils/color'
+import { formatToHuman } from 'utils/currency'
 
 // TODO: testar
 export const getBalanceColor = balance => balance >= 0 ? colorCredit : colorDebit
 
-export const getBalanceText = balance => balance > 0 ? `+${balance}` : `${balance}`
+export const getBalanceText = balance => (balance > 0 ? '+' : '') + formatToHuman(balance)
 
 const Container = styled.div`
   display: flex;

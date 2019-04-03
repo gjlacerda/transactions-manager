@@ -8,6 +8,7 @@ import {
 import { transitionInput } from 'utils/transition'
 import { marginSize } from 'utils/margin'
 import { sm } from 'utils/breakpoint'
+import { formatToHuman } from 'utils/currency'
 
 const Tr = styled.tr`
   cursor: pointer;
@@ -25,27 +26,29 @@ const Td = styled.td`
 `
 
 const TdName = styled(Td)`
-  width: 60%;
+  width: 40%;
 `
 
 const TdValue = styled(Td)`
-  width: 20%;
+  width: 30%;
+  color: ${props => props.kind === 'credit' ? colorCredit : colorDebit};
+  text-align: right;
 `
 
-const TdType = styled(Td)`
-  width: 20%;
+const TdAccumulated = styled(Td)`
+  width: 30%;
   text-align: right;
-  color: ${props => props.kind === 'credit' ? colorCredit : colorDebit};
 `
 
 export default ({
   description,
   value,
   kind,
+  accumulated,
 }) => (
   <Tr>
     <TdName>{description}</TdName>
-    <TdValue>{value}</TdValue>
-    <TdType kind={kind}>{kind}</TdType>
+    <TdValue kind={kind}>{formatToHuman(value)}</TdValue>
+    <TdAccumulated>{formatToHuman(accumulated)}</TdAccumulated>
   </Tr>
 )

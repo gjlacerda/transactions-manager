@@ -8,13 +8,13 @@ const INITAL_STATE = {
 const addTransaction = (state, action) => ({
   ...state,
   list: [
+    ...state.list,
     {
       id: action.id,
       description: action.description,
       value: action.value,
       kind: action.kind,
     },
-    ...state.list,
   ],
 })
 
@@ -27,11 +27,11 @@ const receiveTransactions = (state, action) => ({
   ...state,
   loading: false,
   dirty: true,
-  lastId: action.payload.length ? action.payload[action.payload.length - 1].id : null,
+  lastId: action.payload.length ? action.payload[0].id : null,
   lastPage: action.payload.length < 4, // TODO parametrizar
   list: [
-    ...state.list,
     ...action.payload,
+    ...state.list,
   ],
 })
 

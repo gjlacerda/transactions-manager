@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   lastPage: state.transaction.lastPage,
   loading: state.transaction.loading,
   dirty: state.transaction.dirty,
+  balance: state.balance.balance,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
