@@ -1,5 +1,13 @@
 const HtmlPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
+const R = require('ramda')
+
+const toWebpackDefinitions = R.pipe(
+  R.toPairs,
+  R.map(([key, value]) => ([`process.env.${key}`, JSON.stringify(value)])),
+  R.fromPairs,
+)
 
 module.exports = {
   entry: './src/index.js',
@@ -52,5 +60,6 @@ module.exports = {
         viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
       },
     }),
+    new webpack.DefinePlugin(toWebpackDefinitions(process.env)),
   ],
 }
